@@ -14,16 +14,16 @@ The station maintenance system
 	This system can communicate by satellite with all wilderness weather stations to monitor the health of these systems and provide reports of problems.
 
 FUNCTIONAL REQUIREMENTS (10)
-1.
-2.
-3.
-4.
-5.
-6.
-7.
-8.
-9.
-10.
+1. Collect data from the instruments - weather station system
+2. Process data - timestamp data, convert to database format, compute average, etc.
+3. Handle incomplete/impossible data inputs (ex: -72597 inches of rain)
+4. Data management system archives data
+5. Show current data to user
+6. Method to search past data stored in archive
+7. Alert user to abnormal data (ex: extreme winds)
+8. Maintenance system alerts user of incomplete/impossible data - may indicate broken instruments
+9. Maintenance system can communicate over network
+10. Maintenance system logs errors for later viewing
 
 NON-FUNCTIONAL REQUIREMENTS (2)
 1. System must be coded in Java
