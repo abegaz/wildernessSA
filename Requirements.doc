@@ -24,15 +24,15 @@ FUNCTIONAL REQUIREMENTS (10)
 8. Maintenance system alerts user of incomplete/impossible data - may indicate broken instruments
 9. Maintenance system can communicate over network
 10. Maintenance system logs errors for later viewing
+11. Have a system for identifying individual sensors for repair.
+
 
 NON-FUNCTIONAL REQUIREMENTS (2)
 1. System must be coded in Java
 2. System must use the mySQL database management system        ##Remillard made changes below this line. Feel free to edit or remove them#
-3. Have GUI tailored to users.
-4. Be easy to use. Have explanatory abstract descriptions of functions.
-5. Have few errors, and a system to report them.
-6. Possibly be linked to a website or mobile app for veiwing and increasted portability.
-7. Allow different methods for veiwing common statistics archived in the data base.
-8. Have a system for identifying individual sensors for repair.
-9. Have different levels of accessibility for users and administrator.
-10. Seperate information in graphic menus or windows to enhance use ability.
+3. Intuitive GUI design
+4. Have explanatory abstract descriptions of functions.
+5. Possibly be linked to a website or mobile app for viewing and increased portability.
+6. Allow different methods for viewing common statistics archived in the data base.
+7. Have different levels of accessibility for users and administrator.
+8. Separate information in graphic menus or windows to enhance use ability.
