@@ -1,7 +1,0 @@
-Weather APIs (for data & maps)
-1. NOAA.gov official API: https://www.ncdc.noaa.gov/wct/index.php
-    -seems to be completely free for all features
-2. OpenWeatherMap.org: http://openweathermap.org/api
-    -Most APIs and features we'd use seem to be free
-3. DarkSky.net: https://darksky.net/
-    -1,000 API calls for free each day, more costs $0.0001 per call. 
