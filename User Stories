@@ -17,3 +17,14 @@ As a researcher, I want to be notified of broken/non-functioning sensors, so I c
   *Acceptance Criteria:
     -Able to check current data for impossibilities (ex: -700 inches of rain)
     -Denote impossible data clearly (ex: "ERROR - [data]", maybe different font color)
+
+(SuiteLife)
+
+As a government employee I need access to archived weather data in order to extrapolate further weather patterns.
+
+As a product owner/government employee I need a troubleshoot protocol that can be activated remotely due to the inaccessibility of the weather stations.
+
+As a government employee/user I need an intuitive GUI for viewing data
+
+As a government employee/user I need to be able to export/print the data that I have viewed.
+
