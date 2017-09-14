@@ -1,0 +1,6 @@
+https://www.ncdc.noaa.gov/wct/index.php
+  -Government supplied data, and free (pretty sure)
+http://openweathermap.org/api
+  -Multiple services, most free.
+https://darksky.net/
+  -1000 free calls per day, any after that is $0.0001 per call
