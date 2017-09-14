@@ -2,6 +2,7 @@
 Layered Architecture
 
 Repository Architecture
+  The repository pattern of architecture would probably work best for this project since we are required to gather, organize, and store (perhaps for long term) large amounts of data for later access and analysis.
 
 Client-Server Architecture
 
