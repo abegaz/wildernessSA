@@ -11,3 +11,16 @@ Pipe & Filter Architecture
 Cloud Architecture
 
 Model View Control Architecture
+  This could likely work well, too.
+
+
+Parts of program (basic systems, could also be a layout for layered):
+-Database controller
+  *Database is local, possibly moved to server later
+-API handler
+  *gets data from API and parses it, sends to database
+-Data analyzer
+  *Checks data for anomolies (extreme weather, impossible data, etc)
+-GUI
+  *Shows data from database, and allows manipulation of it (new locations to track, reload/get new data, etc)
+  *If allowing weather maps, can get and show them using API handler
