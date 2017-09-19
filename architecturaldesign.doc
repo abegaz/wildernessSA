@@ -17,6 +17,9 @@ Model View Control Architecture
 Parts of program (basic systems, could also be a layout for layered):
 -Database controller
   *Database is local, possibly moved to server later
+  *Possibly implement as a singleton object
+  *Ensure only 1 operation done to dasabase at a time
+    -Maybe use an arraylist of the commands (as strings?) for a queue, and make it do only 1 at a time
 -API handler
   *gets data from API and parses it, sends to database
 -Data analyzer
