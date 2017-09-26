@@ -18,3 +18,10 @@ DataAnalyzer.java
 GUI.java
   -objects for the parts of the window
   -updateGUI():void //updates data showing in GUI to selected data
+  -
+  -//Maybe have a textbox to input DB commands from GUI for testing
+  
+  -checkLogin():boolean //checks if currently ientered login credentials are valid
+  -hash(String):String //hash function for passwords (maybe usernames, too). The hashed values are stored in DB, so hash entered value before checking validity
+  
+
