@@ -1,0 +1,20 @@
+
+DBController.java
+  -ArrayList<String> commandQueue //arraylist of MySQL commands as strings, single object
+  -database object //actual database onject, single object
+  -doNext():String output //execute next command in queue and get output (set a default for no output), maybe some protections to prevent deleting the database (or something)
+  -addToQueue(String s):void
+  
+  
+APIHandler.java
+  -JSON object
+  -get(request):return object (probably JSON object)
+  -parseJSON():data (gets requested data from JSON)
+  
+  
+DataAnalyzer.java
+  -checkData():String anomly (checks data sent to it and returns which anomaly it has, if any)
+
+GUI.java
+  -objects for the parts of the window
+  -updateGUI():void //updates data showing in GUI to selected data
