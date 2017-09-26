@@ -23,6 +23,6 @@ GUI.java
   -//Maybe have a textbox to input DB commands from GUI for testing
   
   -checkLogin():boolean //checks if currently ientered login credentials are valid
-  -hash(String):String //hash function for passwords (maybe usernames, too). The hashed values are stored in DB, so hash entered value before checking validity
+  -hash(String):String //hash function for passwords (maybe usernames, too). The hashed values are stored in DB, so hash entered value before checking validity. storing and checking against only the hashed usernames and passwords should prevent most SQL injections, as the login prompt will probably be the only input which directly affects the DB outside of testing.
   
 
