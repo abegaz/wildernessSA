@@ -1,9 +1,10 @@
 
 DBController.java
   -ArrayList<String> commandQueue //arraylist of MySQL commands as strings, single object
-  -database object //actual database onject, single object
+  -database object //actual database onject, single object, can be either file in local directory or server
   -doNext():String output //execute next command in queue and get output (set a default for no output), maybe some protections to prevent deleting the database (or something)
-  -addToQueue(String s):void
+  -addToQueue(String s):void //basically all other classes interact with this one through just this method
+  -getQueueSize():int //Maybe main() will loop and call this repeatedly, then call doNext if it's more than 0?
   
   
 APIHandler.java
