@@ -10,7 +10,8 @@ DBController.java
     -Maybe doNext() will create a thread to execute the command (which is deleted when it's finished), and will only execute a new one when the last one is done (as in: a new thread is made to do 1 command that deletes itself when done, and a new thread with a new command won't be made until the last one is deleted.)
     -Maybe main() will loop and call getQueueSize() repeatedly, then call doNext if it's more than 0?
     -Maybe addToQueue will end with a call to doNext, but that might not work (may work if there's only 1 thread, but that makes the whole program freeze when doing anything).
-  
+    -Maybe there's a separate thread that exclusively updates the database. The queue is stored on that thread, and does nothing but run the doNext() method in an infinite loop. Maybe when you close the program, it might send a special command that the thread will read and delete itself instead to doing a sql command.
+    
 APIHandler.java
   -JSON object
   -get(request):return object (probably JSON object)
