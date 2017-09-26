@@ -2,10 +2,14 @@
 DBController.java
   -ArrayList<String> commandQueue //arraylist of MySQL commands as strings, single object
   -database object //actual database onject, single object, can be either file in local directory or server
-  -doNext():String output //execute next command in queue and get output (set a default for no output), maybe some protections to prevent deleting the database (or something)
+  -doNext():String output //execute next command in queue and get output (set a default for no output), maybe some protections to prevent deleting the database (or something).
   -addToQueue(String s):void //basically all other classes interact with this one through just this method
-  -getQueueSize():int //Maybe main() will loop and call this repeatedly, then call doNext if it's more than 0?
+  -getQueueSize():int 
   
+  *Possible ways to prevent multiple edits to DB at once:
+    -Maybe doNext() will create a thread to execute the command (which is deleted when it's finished), and will only execute a new one when the last one is done (as in: a new thread is made to do 1 command that deletes itself when done, and a new thread with a new command won't be made until the last one is deleted.)
+    -Maybe main() will loop and call getQueueSize() repeatedly, then call doNext if it's more than 0?
+    -Maybe addToQueue will end with a call to doNext, but that might not work (may work if there's only 1 thread, but that makes the whole program freeze when doing anything).
   
 APIHandler.java
   -JSON object
@@ -23,6 +27,7 @@ GUI.java
   -//Maybe have a textbox to input DB commands from GUI for testing
   
   -checkLogin():boolean //checks if currently ientered login credentials are valid
-  -hash(String):String //hash function for passwords (maybe usernames, too). The hashed values are stored in DB, so hash entered value before checking validity. storing and checking against only the hashed usernames and passwords should prevent most SQL injections, as the login prompt will probably be the only input which directly affects the DB outside of testing.
+  -hash(String):String //hash function for passwords (maybe usernames, too). The hashed values are stored in DB, so hash entered value before checking validity. 
+    Note: storing and checking against only the hashed usernames and passwords should prevent most SQL injections, as the login prompt will probably be the only input which directly affects the DB outside of testing.
   
 
