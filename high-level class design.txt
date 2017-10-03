@@ -2,6 +2,8 @@
 DBController.java
   -ArrayList<String> commandQueue //arraylist of MySQL commands as strings, single object
   -database object //actual database onject, single object, can be either file in local directory or server
+  -instance: DBController //DBController object. this is the singleton object other objects interact with
+  -getInstance(): DBController //getter for the signleton object
   -doNext():String output //execute next command in queue and get output (set a default for no output), maybe some protections to prevent deleting the database (or something).
   -addToQueue(String s):void //basically all other classes interact with this one through just this method
   -getQueueSize():int 
