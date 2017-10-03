@@ -2,6 +2,6 @@
 A data collection system that collects data about weather conditions in remote areas
 
 
-windernessSA and Test folders are test classes.
+windernessSA folder is a test project.
 
 WildernessSA is a base JavaFX project.
