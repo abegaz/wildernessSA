@@ -24,7 +24,6 @@ FUNCTIONAL REQUIREMENTS (10)
 8. Maintenance system alerts user of incomplete/impossible data - may indicate broken instruments
 9. Maintenance system can communicate over network
 10. Maintenance system logs errors for later viewing
-11. Have a system for identifying individual sensors for repair.
 
 
 NON-FUNCTIONAL REQUIREMENTS (2)
