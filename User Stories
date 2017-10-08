@@ -2,6 +2,7 @@ As a <user role> I want to <goal>, so that <desired benefit>.
 
 As a forester I want to be able to search for past rainfall in a certain area, so that I can assess the current wildfire risk.
 
+
 As a weather forecaster I want to be able to look up the current weather patterns in an area, so I can make a forecast.
   *Acceptance Criteria:
     -Able to pull current data for specified area
@@ -28,3 +29,12 @@ As a government employee/user I need an intuitive GUI for viewing data
 
 As a government employee/user I need to be able to export/print the data that I have viewed.
 
+// 10/07/2017 Kyle Remillard START //
+As an administrator, I want to be able to control who is added to or removed from the program, so that I can have more direct control
+over my subordinates.
+
+As a game warden, I want to be able to see weather patterns, so that I can guess how the local game population is doing.
+
+As a financial backer, I want to know that the system is secure, so that I can be confident in the confidentiality of the intellectual
+properties that I have invested in.
+// 10/07/2017 Kyle Remillard END //
