@@ -255,7 +255,34 @@ public class DBInterface {
             System.out.println("User deleted");
         }
     }
+    /*******************************************************************************************/
 
+    public static void generate(){ //TODO finish this after creating generator
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("");
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+    }
+    public static String getHighestReportID() {
+        String result = "";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT MAX(reportID) FROM reports");
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                result = resultSet.getString("ID");
+            }
+            connection.close();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return result;
+    }
 
 }
 
