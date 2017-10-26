@@ -27,9 +27,17 @@ public class DBInterface {
         // TODO Auto-generated method stub
 //        getConnection(); //Works
 //        createTable("testTableName"); //Works
-        insert("testTableName", "id","5"); //Works
+//        insert("testTableName", "id","5"); //Works
 //        select1("testTableName", "id", "3");
 //        isSame("testTableName", "id", "5");
+        int i = 0;
+        while(i < 1000) {
+            Generator generator = new Generator();
+            uploadGenerateReports(generator.generateReport(getHighestReportID()));
+
+            System.out.println(generator.generateReport(getHighestReportID()));
+            i++;
+        }
     }
 
     public static Connection getConnection() throws Exception {
@@ -257,10 +265,14 @@ public class DBInterface {
     }
     /*******************************************************************************************/
 
-    public static void generate(){ //TODO finish this after creating generator
+    public static void uploadGenerateReports(String generatedReport){ //TODO finish this after creating generator
         try {
             Connection connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO reports(stationID, conditions, pressure, rain, reportID, temp," +
+                    " `timestamp`, windDirection, windSpeed)" +
+                    "VALUES(" + generatedReport + ")");
+            preparedStatement.executeUpdate();
+            connection.close();
 
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -275,7 +287,7 @@ public class DBInterface {
                     "SELECT MAX(reportID) FROM reports");
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                result = resultSet.getString("ID");
+                result = resultSet.getString("MAX(reportID)");
             }
             connection.close();
         } catch (Exception exception) {

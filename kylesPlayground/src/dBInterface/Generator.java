@@ -11,6 +11,8 @@ public class Generator {
     ArrayList<String> stations = new ArrayList<>();
     ArrayList<String> conditions = new ArrayList<>();
     ArrayList<String> pressure = new ArrayList<>();
+    String report;
+    String stringStation;
     String barometricPressure;
     String stringConditions;
     String stringRain;
@@ -37,26 +39,26 @@ public class Generator {
     Random random = new Random();
  /**************** Declarations above ************************************************/
     private void populateStations() {
-        stations.add("acadia");
-        stations.add("American Samoa");
-        stations.add("Arches");
-        stations.add("Badlands");
-        stations.add("Big Bend");
-        stations.add("Biscayne");
-        stations.add("Black canyon of the gunnison");
-        stations.add("Bryce Canyon");
-        stations.add("Canonlands");
-        stations.add("Capitol Reef");
-        stations.add("Carlsbad Caverns");
-        stations.add("Channel Islands");
-        stations.add("Congaree");
-        stations.add("Crater Lake");
-        stations.add("Cuyahoga Valley");
-        stations.add("Death Valley");
-        stations.add("Denali");
-        stations.add("Dry Tortugas");
-        stations.add("Everglades");
-        stations.add("Gates of the Arctic");
+        stations.add("acadia");//1
+        stations.add("American Samoa");//2
+        stations.add("Arches");//3
+        stations.add("Badlands");//4
+        stations.add("Big Bend");//5
+        stations.add("Biscayne");//6
+        stations.add("Black canyon of the gunnison");//7
+        stations.add("Bryce Canyon");//8
+        stations.add("Canonlands");//9
+        stations.add("Capitol Reef");//10
+        stations.add("Carlsbad Caverns");//11
+        stations.add("Channel Islands");//12
+        stations.add("Congaree");//13
+        stations.add("Crater Lake");//14
+        stations.add("Cuyahoga Valley");//15
+        stations.add("Death Valley");//16
+        stations.add("Denali");//17
+        stations.add("Dry Tortugas");//18
+        stations.add("Everglades");//19
+        stations.add("Gates of the Arctic");//20
     }
 
     private void populateConditions(){
@@ -68,14 +70,27 @@ public class Generator {
         conditions.add("Severe Thunder Storms");
     }
     /******************* List initialization above *************************************/
-    private void generateReport() {
-
+     String generateReport(String largestReportID) {
+        populateStations();
+        populateConditions();
+         report =
+                randomStation() +", "+
+                "'"+generateConditions()+"'" +", "+
+                generatePressure() +", "+
+                generateRain() +", "+
+                generateReportID(largestReportID) +", "+
+                generateTemperature() +", "+
+                "'"+generateDateTime()+"'" +", "+
+                "'"+generateWindDirection()+"'" +", "+
+                generateWindSpeed();
+        return report;
     }
 
     private String randomStation() {
         int randStation = random.nextInt(19) + 0;
-        String station = stations.get(randStation);
-        return station;
+//        String station = stations.get(randStation);
+        stringStation = String.valueOf(randStation);
+        return stringStation;
     }
 
     private String generateConditions() {
@@ -105,7 +120,7 @@ public class Generator {
     }
 
     private String generateTemperature() {
-        intTemperature = random.nextInt(110)+0;
+        intTemperature = random.nextInt(160)+0;
         intTemperature1 = random.nextInt(60)+0;
         intTemperature = intTemperature - intTemperature1;
         stringTemperature = String.valueOf(intTemperature);
@@ -113,8 +128,8 @@ public class Generator {
     }
 
     private String generateDateTime(){
-        intYear = random.nextInt(2017)+1900;
-        intMonth = random.nextInt(12)+1;
+        intYear = random.nextInt(117)+1900;
+        intMonth = random.nextInt(12)+0;
         intDay = random.nextInt(30)+1;
         stringYear = String.valueOf(intYear);
         stringMonth = String.valueOf(intMonth);
