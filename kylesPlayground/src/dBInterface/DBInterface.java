@@ -25,19 +25,7 @@ public class DBInterface {
 
     public static void main(String[] args) throws Exception { //TODO encorperate these in main driver
         // TODO Auto-generated method stub
-//        getConnection(); //Works
-//        createTable("testTableName"); //Works
-//        insert("testTableName", "id","5"); //Works
-//        select1("testTableName", "id", "3");
-//        isSame("testTableName", "id", "5");
-        int i = 0;
-        while(i < 1000) {
-            Generator generator = new Generator();
-            uploadGenerateReports(generator.generateReport(getHighestReportID()));
 
-            System.out.println(generator.generateReport(getHighestReportID()));
-            i++;
-        }
     }
 
     public static Connection getConnection() throws Exception {
