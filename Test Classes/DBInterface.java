@@ -63,10 +63,10 @@ public class DBInterface {
 		final String timestamp = Integer.toString(r.timestamp);
 		final String temp = Integer.toString(r.temp);
 		final String pressure = Double.toString(r.pressure);
-		final String conds = r.conditions;
 		final String rain = Double.toString(r.rain);
 		final String windSpeed = Integer.toString(r.windSpeed);
 		final String windDirection = Integer.toString(r.windDirection);
+		final String conditions = r.conditions;
 		try {
 			Connection conn = getConnection();
 			PreparedStatement insert = conn.prepareStatement(
