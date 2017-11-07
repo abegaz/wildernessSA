@@ -160,6 +160,37 @@ public class DBInterface {
 		}
 		return null;
 	}
+	
+	public static ArrayList<String> selectFilteredReports(String tempCompare, String tempValue, String presCompare, String presValue,String rainCompare, String rainValue,String windCompare, String windValue,) throws Exception {
+		try {
+			Connection conn = getConnection();
+			String compareString = "SELECT * FROM reports r, stations s WHERE r.stationID > 0 ";
+			if (tempCompare != ""){
+				compareString += " AND  temperature " + tempCompare + " " + tempValue;
+			}if (presCompare != ""){
+				compareString += " AND  pressure " + presCompare + " " + presValue;
+			}if (rainCompare != ""){
+				compareString += " AND  rain " + rainCompare + " " + rainValue;
+			}if (windCompare != ""){
+				compareString += " AND  windSpeed " + windCompare + " " + windValue;
+			}
+			compareString += " LIMIT 50";
+			PreparedStatement select = conn.prepareStatement(compareString);
+			ResultSet result = select.executeQuery();
+			ArrayList<String> array = new ArrayList<String>();
+			while (result.next()) {
+				System.out.print(result.getString("reportID"));
+				System.out.print(", ");
+				System.out.println(result.getString("timestamp"));
+				array.add(result.getString("reportID"));
+			}
+			System.out.println("Select Complete.");
+			return array;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	// template for deletes
 	public static void delete() throws Exception {
