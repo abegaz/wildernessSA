@@ -59,19 +59,20 @@ public class DBInterface {
 
 	public static void insertNewReport(Report r) throws Exception {
 		final String reportID = Integer.toString(r.reportID);
-		final String dateTime = Integer.toString(r.timeCreated);
-		final String temp = Integer.toString(r.temperature);
-		final String pres = Double.toString(r.pressure);
-		final String cond = r.conditions;
+		final String stationID = Integer.toString(r.stationID);
+		final String timestamp = Integer.toString(r.timestamp);
+		final String temp = Integer.toString(r.temp);
+		final String pressure = Double.toString(r.pressure);
+		final String conds = r.conditions;
 		final String rain = Double.toString(r.rain);
-		final String wspd = Integer.toString(r.windSpeed);
-		final String wdir = Integer.toString(r.windDirection);
+		final String windSpeed = Integer.toString(r.windSpeed);
+		final String windDirection = Integer.toString(r.windDirection);
 		try {
 			Connection conn = getConnection();
 			PreparedStatement insert = conn.prepareStatement(
-					"INSERT INTO reports (reportID, dateTime, temp, pres, cond, rain, wspd, wdir) VALUES ('" + reportID
-							+ "', '" + dateTime + "', '" + temp + "', '" + pres + "', '" + cond + "', '" + rain + "', '"
-							+ wspd + "', '" + wdir + "')");
+					"INSERT INTO reports (reportID, stationID, timestamp, temp, pressure, rain, windSpeed, windDirection, conditions) VALUES ('" + reportID
+							+ "', '" + stationID + "', '" + timestamp + "', '" + temp + "', '" + pressure + "', '" + rain + "', '" + windSpeed + "', '"
+							+ windDirection + "', '" + conditions + "')");
 			insert.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -89,7 +90,7 @@ public class DBInterface {
 			Connection conn = getConnection();
 			PreparedStatement insert = conn
 					.prepareStatement("INSERT INTO stations (stationID, stationName, latitude, longitude) VALUES ('"
-							+ stationID + "', '" + location + "', '" + latitude + "', '" + longitude + "')");
+							+ stationID + "', '" + stationName + "', '" + latitude + "', '" + longitude + "')");
 			insert.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,8 +107,8 @@ public class DBInterface {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement insert = conn
-					.prepareStatement("INSERT INTO users (userID, username, password, privilege) VALUES ('" + userID
-							+ "', '" + username + "', '" + password + "', '" + privilege + "')");
+					.prepareStatement("INSERT INTO users (userID, privilege, username, password) VALUES ('" + userID
+							+ "', '" + privilege + "', '" + username + "', '" + password + "')");
 			insert.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,14 +143,14 @@ public class DBInterface {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement select = conn
-					.prepareStatement("SELECT * FROM stations_has_reports h, reports r, stations s WHERE h.stationID = "
-							+ s.stationID + " AND h.reportID = r.reportID LIMIT 10");
+					.prepareStatement("SELECT * FROM reports r, stations s WHERE r.stationID = "
+							+ s.stationID + " LIMIT 10");
 			ResultSet result = select.executeQuery();
 			ArrayList<String> array = new ArrayList<String>();
 			while (result.next()) {
 				System.out.print(result.getString("reportID"));
 				System.out.print(", ");
-				System.out.println(result.getString("dateTime"));
+				System.out.println(result.getString("timestamp"));
 				array.add(result.getString("reportID"));
 			}
 			System.out.println("Select Complete.");
