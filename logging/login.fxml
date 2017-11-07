@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane prefHeight="273.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logging.LoginController">
+  <children>
+    <StackPane prefHeight="227.0" prefWidth="290.0">
+      <children>
+        <VBox spacing="10.0">
+          <children>
+            <GridPane prefHeight="70.0" prefWidth="290.0">
+              <children>
+                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="user" promptText="Use &quot;open&quot; to login" text="U" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="password" promptText="Use &quot;sesame&quot; to login" text="P" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="109.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="189.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <StackPane prefWidth="256.0">
+              <children>
+                <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Login" StackPane.alignment="CENTER_RIGHT" />
+              </children>
+            </StackPane>
+                  <Label prefHeight="37.0" prefWidth="189.0" text="Welcome to the Winderness" />
+          </children>
+        </VBox>
+      </children>
+    </StackPane>
+  </children>
+  <padding>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+  </padding>
+</StackPane>
