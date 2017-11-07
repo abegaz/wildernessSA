@@ -1,0 +1,27 @@
+ALEX this file is the one your are looking for 11/7/2017
+
+
+//This is the hash function you requested
+private static int hashPass(String password) {
+        int hash = 7;
+        for (int i = 0; i < password.length(); i++) {
+            hash = hash*31 + password.charAt(i);
+        }
+        return hash;
+    }
+    
+    You can look at the DBconnector in my branch in kyles playground if you want to see how I connect to the DB and 
+    what methods we already have. The format for the user table is currently:
+    
+    userID, privilege, username, password
+    
+    Current and only user
+    userID: 1
+    privilege: 1
+    username: Admin
+    password: "password", but this is hashed to 1449706402, which is what we store in the DB
+    
+    I will upload the whole thing when I have time. It still has a lot of stuff that I am working on fixing
+    and i think it would be more confusing for you to look at it unfinished. 
+    
+    Need to get some sleep before I go to work tonight.
