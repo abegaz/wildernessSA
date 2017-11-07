@@ -5,14 +5,14 @@ import java.util.Random;
 public class Station {
 
 	public static int stationID;
-	public static String location;
+	public static String stationName;
 	public static double latitude;
 	public static double longitude;
 	
 	public Station(int i){
 		Random random = new Random();
 		this.stationID = i;
-		this.location = "Location #" + Integer.toString(i);
+		this.stationName = "Location #" + Integer.toString(i);
 		this.latitude = 90 * random.nextDouble();
 	}
 	
@@ -20,8 +20,8 @@ public class Station {
 		this.stationID = i;
 	}
 	
-	public void setLocation(String s){
-		this.location = s;
+	public void setStationName(String s){
+		this.stationName = s;
 	}
 	
 	public void setLatitude(double d){
