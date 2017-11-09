@@ -4,40 +4,47 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane prefHeight="273.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logging.LoginController">
+<StackPane prefHeight="499.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logging.LoginController">
   <children>
     <StackPane prefHeight="227.0" prefWidth="290.0">
       <children>
+            <ImageView fitHeight="487.0" fitWidth="620.0">
+               <image>
+                  <Image url="@../../../../Downloads/Proposed%20GUI%20Design.JPG" />
+               </image>
+            </ImageView>
         <VBox spacing="10.0">
           <children>
-            <GridPane prefHeight="70.0" prefWidth="290.0">
-              <children>
-                <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                <TextField fx:id="user" promptText="Use &quot;open&quot; to login" text="U" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                <TextField fx:id="password" promptText="Use &quot;sesame&quot; to login" text="P" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-              </children>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="10.0" prefWidth="109.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="189.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
             <StackPane prefWidth="256.0">
               <children>
-                <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" text="Login" StackPane.alignment="CENTER_RIGHT" />
+                        <Label opacity="0.0" prefHeight="37.0" prefWidth="189.0" text="Welcome to the Winderness" />
               </children>
             </StackPane>
-                  <Label prefHeight="37.0" prefWidth="189.0" text="Welcome to the Winderness" />
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="380.0" translateY="130.0">
+              <children>
+                <Label opacity="0.0" prefHeight="17.0" prefWidth="260.0" text="                                                            Username:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label opacity="0.0" prefHeight="17.0" prefWidth="262.0" text="                                                             Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="user" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.55" prefHeight="25.0" prefWidth="100.0" promptText="Use &quot;open&quot; to login" text="U" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <TextField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="25.0" prefWidth="100.0" promptText="Use &quot;sesame&quot; to login" text="P" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="262.0" minWidth="10.0" prefWidth="262.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="114.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="65.0" minHeight="0.0" prefHeight="54.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+          <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" opacity="0.1" text="Enter" translateX="265.0" translateY="127.0" />
           </children>
         </VBox>
       </children>
