@@ -7,7 +7,7 @@ public class Report {
 
 	private int reportID;
 	private int stationID;
-    private String timeCreated;
+    private String timestamp;
     private double temperature;
     private double pressure;
     private double rain;
@@ -19,7 +19,7 @@ public class Report {
     public Report(int i){
         this.reportID = 0;
         this.stationID = i;
-        this.timeCreated = "";
+        this.timestamp = "";
         this.temperature = 0;
         this.pressure = 0;
         this.conditions = null;
@@ -27,12 +27,12 @@ public class Report {
         this.windSpeed = 0;
         this.windDirection = "";//0;
     }
-	public Report(int reportID, int stationID, String timeCreated, double temperature, double pressure, double rain,
+	public Report(int reportID, int stationID, String timestamp, double temperature, double pressure, double rain,
 			double windSpeed, String /*double*/ windDirection, String conditions) {
 		super();
 		this.reportID = reportID;
 		this.stationID = stationID;
-		this.timeCreated = timeCreated;
+		this.timestamp = timestamp;
 		this.temperature = temperature;
 		this.pressure = pressure;
 		this.rain = rain;
@@ -52,11 +52,11 @@ public class Report {
 	public void setStationID(int stationID) {
 		this.stationID = stationID;
 	}
-	public String getTimeCreated() {
-		return timeCreated;
+	public String getTimestamp() {
+		return timestamp;
 	}
-	public void setTimeCreated(String timeCreated) {
-		this.timeCreated = timeCreated;
+	public void setTimestamp(String timeCreated) {
+		this.timestamp = timeCreated;
 	}
 	public double getTemperature() {
 		return temperature;
