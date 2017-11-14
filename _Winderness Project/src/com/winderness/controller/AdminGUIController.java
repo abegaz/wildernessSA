@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class AdminGUIController extends LoginController {
+public class AdminGUIController /*extends LoginController*/ {
 
 	@FXML private Button createUserButton, userView;
 	@FXML private TextField userNameTextField, passwordTextField;
@@ -51,7 +51,7 @@ public class AdminGUIController extends LoginController {
 				usernameInt = resultSet.getInt("COUNT(username)");
 			}
 			updateUsers = conn.prepareStatement("SELECT COUNT(`password`) FROM users WHERE " +
-					"`password` like '"+loginController.hashPass(passwordTextField.getText())+"'");
+					"`password` like '"+ /*loginController*/LoginController.hashPass(passwordTextField.getText())+"'");
 			resultSet = updateUsers.executeQuery();
 			while(resultSet.next()){
 				passwordInt = resultSet.getInt("COUNT(`password`)");
@@ -87,7 +87,7 @@ public class AdminGUIController extends LoginController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@FXML
 	public void userView(ActionEvent event) throws Exception{
 		 stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
