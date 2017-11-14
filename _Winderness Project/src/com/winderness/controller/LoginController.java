@@ -18,12 +18,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import com.winderness.model.User;
 
 public class LoginController{
     @FXML private Label loginTitleLabel, loginUsernameResultLabel, loginPasswordResultLabel;
     @FXML public TextField usernameTextField, passwordTextField;
     @FXML private Button loginButton;
-    
+
     private Stage stage;
     private AnchorPane root;
     private Scene scene;
@@ -33,11 +38,45 @@ public class LoginController{
     private int usernameInt;
     private int passwordInt;
 
+    private ArrayList<User> users;
+    private Comparator<User> c;
+
+    @FXML
+    public void initialize() {
+    	//get
+    	users = new ArrayList<User>();
+    	try(
+    			Connection conn = WilderTestDBConfig.getConnection();
+				PreparedStatement displayprofile = conn.prepareStatement("SELECT * FROM users GROUP BY username;");
+				ResultSet rs = displayprofile.executeQuery();
+		){
+    		while(rs.next())
+	    	{
+	    		System.out.println(rs.getInt("userID") + " | " + rs.getInt("privilege") + " | " + rs.getString("username")+ " | " + rs.getString("password"));
+	    		users.add(new User(rs.getInt("userID"), rs.getInt("privilege"), rs.getString("username").toLowerCase(), rs.getString("password").toLowerCase()));
+	    	}
+    	}catch (Exception e) {
+    		e.printStackTrace();
+    	}
+
+    	c = new Comparator<User>()
+        {
+            public int compare(User u1, User u2)
+            {
+            	if(u1.getUsername().compareTo(u2.getUsername()) == 0){
+            		return u1.getPassword().compareTo(u2.getPassword());
+            	}
+            	else
+            		return u1.getUsername().compareTo(u2.getUsername());
+            }
+        };
+    }
+
     public void login(ActionEvent event) throws Exception {
     	/*String*/ permission ="";
         validatePasswordAndUsername();
     	checkUsersTable(); //for testing
-    	
+
         try {
             permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
 
@@ -46,10 +85,10 @@ public class LoginController{
         } catch (Exception e) {
         	e.printStackTrace();
         }
-    	
+
     	if(checkHashPass() == true) {
     		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    		if(permission.equals("1"))	
+    		if(permission.equals("1"))
             {
             	root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
             	scene = new Scene(root);
@@ -63,11 +102,26 @@ public class LoginController{
     		else System.out.println("login failed");
 
         } else System.out.println("login failed");
-        
-        
+
+//    	String pass = String.valueOf(hashPass(passwordTextField.getText()));
+//    	int index = Collections.binarySearch(users, new User(usernameTextField.getText().toLowerCase(), pass.toLowerCase()), c);
+//		System.out.println("Found at index  " + index);
+//		if(index >=0 && index < users.size() && users.get(index).getPassword().equals(pass)){
+//			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+//			if(users.get(index).getPrivilege() == 1){
+//				root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
+//            	scene = new Scene(root);
+//            	stage.setScene(scene);
+//			}
+//			else if(users.get(index).getPrivilege() == 0){
+//				root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
+//                scene = new Scene(root);
+//                stage.setScene(scene);
+//			}else System.out.println("login failed");
+//		} else System.out.println("login failed");
 
     }
-    
+
     public static int hashPass(String password) {
         int hash = 7;
         for (int i = 0; i < password.length(); i++) {
@@ -143,11 +197,11 @@ GROUP BY users.userID;
         try{
         	conn2 = WilderTestDBConfig.getConnection();
         	stmt = conn2.createStatement();
-            
+
 	    	rs = stmt.executeQuery("SELECT * FROM users");// "SELECT * FROM reports"
 	    	rsmd = rs.getMetaData();
 	    	int columnCount = rsmd.getColumnCount();
-	
+
 	    	System.out.println(columnCount);
 	    	// The column count starts from 1
 	    	for (int i = 1; i <= columnCount; i++ ) {
@@ -202,6 +256,6 @@ GROUP BY users.userID;
         else
             loginPasswordResultLabel.setText("");
     }
-    
+
 }
 
