@@ -50,16 +50,16 @@ public class ReportDetailController extends LoginController {
     private Stage stage;
     private AnchorPane root;
     private Scene scene;
-    
+
     private static String permission = "";
 
 
     @FXML
     public void initialize() {
     	stationListView.setItems(getStationList());
-    	
-    	
-    	dateColumn.setCellValueFactory(new PropertyValueFactory<Report, String>("timeCreated"));
+
+
+    	dateColumn.setCellValueFactory(new PropertyValueFactory<Report, String>("timestamp"));
     	tempColumn.setCellValueFactory(new PropertyValueFactory<Report, Double>("temperature"));
     	pressureColumn.setCellValueFactory(new PropertyValueFactory<Report, Double>("pressure"));
         rainColumn.setCellValueFactory(new PropertyValueFactory<Report, Double>("rain"));
@@ -67,11 +67,11 @@ public class ReportDetailController extends LoginController {
         windDirectionColumn.setCellValueFactory(new PropertyValueFactory<Report, String>("windDirection"));
         conditionsColumn.setCellValueFactory(new PropertyValueFactory<Report, String>("conditions"));
         //backButton.setVisible(false); //commented out
-        
+
     	reportsTable.setItems(getReportsList());
-    	
+
     	System.out.println("\n------------------------------------------------------------------\n");
-        
+
     	testDB();
     }
     public void backToAdmin(ActionEvent event) throws Exception {
@@ -93,7 +93,7 @@ public class ReportDetailController extends LoginController {
     {
     	permission ="";
     	boolean visible = false;
-    	
+
         try {
              permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
 
@@ -112,8 +112,8 @@ public class ReportDetailController extends LoginController {
         	backButton.setDisable(visible);
         }
 		return visible;
-    	
-    
+
+
     }
 
     public ObservableList<Station>/*<String>*/  getStationList()
@@ -121,7 +121,7 @@ public class ReportDetailController extends LoginController {
     	ObservableList<Station>/*<String>*/ stations = FXCollections.observableArrayList();
 
         String SQLQuery = "select stationID, stationName, latitude, longitude from stations";
-        
+
 //		ResultSet rs = null;
 
 		try(
@@ -134,7 +134,7 @@ public class ReportDetailController extends LoginController {
 
 			// check to see if receiving any data
 			while (rs.next()){
-				stations.add(new /*String*/Station(rs.getInt("stationID"), rs.getString("stationName")/*.toString()*/, 
+				stations.add(new /*String*/Station(rs.getInt("stationID"), rs.getString("stationName")/*.toString()*/,
 						rs.getDouble("latitude"), rs.getDouble("longitude")));
 
 			}
@@ -148,7 +148,7 @@ public class ReportDetailController extends LoginController {
 		}*/
         return stations;
     }
-    
+
     public void mouseClickedOnListView()
     {
         //
@@ -159,7 +159,7 @@ public class ReportDetailController extends LoginController {
     		//reportsTable.refresh();
         }
     }
-    
+
     public ObservableList<Report>/*<String>*/  getReportsList()
     {
     	ObservableList<Report>/*<String>*/ reports = FXCollections.observableArrayList();
@@ -172,7 +172,7 @@ public class ReportDetailController extends LoginController {
         	SQLQuery += " where stationID = " + stationListView.getSelectionModel().getSelectedItem().getStationID();
         	System.out.println(SQLQuery);
         }
-        
+
 		//ResultSet rs = null;
 
 		try(
@@ -200,7 +200,7 @@ public class ReportDetailController extends LoginController {
 		}*/
         return reports;
     }
-    
+
     private void testDB()
     {
     	//below is for testing to see what is in the database
@@ -214,9 +214,9 @@ public class ReportDetailController extends LoginController {
 	    	rs = stmt.executeQuery("SELECT * FROM stations");// "SELECT * FROM reports"
 	    	rsmd = rs.getMetaData();
 	    	int columnCount = rsmd.getColumnCount();
-	
+
 	    	System.out.println(columnCount);
-	    	
+
 	    	for (int i = 1; i <= columnCount; i++ ) { // The column count starts from 1
 	    	  String name = rsmd.getColumnName(i);// Do stuff with name
 	    	  System.out.println(name + " | " + rsmd.getColumnLabel(i) + " | " + rsmd.getColumnType(i) + " | " + rsmd.getColumnTypeName(i));
