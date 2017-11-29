@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="550.0" minWidth="675.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.ReportDetailController">
+   <children>
+      <Label fx:id="titleLabel" layoutX="274.0" layoutY="14.0" text="Report View">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Pane fx:id="backgroundPane" layoutY="49.0" prefHeight="500.0" prefWidth="676.0">
+         <children>
+            <ListView fx:id="stationListView" layoutX="14.0" layoutY="40.0" onMouseClicked="#mouseClickedOnListView" prefHeight="450.0" prefWidth="129.0" />
+            <Label fx:id="stationLabel" layoutX="57.0" layoutY="14.0" text="Stations" />
+            <TableView fx:id="reportsTable" layoutX="159.0" layoutY="40.0" prefHeight="450.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="dateColumn" prefWidth="70.0" text="Date" />
+                <TableColumn fx:id="tempColumn" prefWidth="50.0" text="Temp" />
+                  <TableColumn fx:id="pressureColumn" prefWidth="55.0" text="Pressure" />
+                  <TableColumn fx:id="rainColumn" prefWidth="50.0" text="Rain" />
+                  <TableColumn fx:id="windSpeedColumn" prefWidth="60.0" text="Wind Spd" />
+                  <TableColumn fx:id="windDirectionColumn" prefWidth="60.0" text="Wind Dir." />
+                  <TableColumn fx:id="conditionsColumn" prefWidth="154.0" text="Conditions" />
+              </columns>
+            </TableView>
+            <Label fx:id="reportsLabel" layoutX="389.0" layoutY="14.0" text="Reports" />
+         </children>
+      </Pane>
+      <!-- made invisible -->
+      <Button fx:id="backButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" text="Back" visible="false" />
+   </children>
+</AnchorPane>
