@@ -28,7 +28,7 @@ public class Context {
 	public void setStation(Station station) {
 		//this.station = station;
 		//this.station.setStationID(station.getStationID());
-		//this.station.setStationName(station.getStationName());
+		this.station.setStationName(station.getStationName());
 		this.station.setLatitude(station.getLatitude());
 		this.station.setLongitude(station.getLongitude());
 	}
