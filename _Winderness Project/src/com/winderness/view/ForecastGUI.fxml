@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.ForcastController">
    <children>
       <ImageView fx:id="bgImage" fitHeight="800.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" />
       <GridPane fx:id="forecastGridPane" gridLinesVisible="true" layoutX="25.0" layoutY="136.0" prefHeight="650.0" prefWidth="950.0">
@@ -171,7 +170,7 @@
             <Font size="72.0" />
          </font>
       </Label>
-      <Button fx:id="goBackButton" layoutX="848.0" layoutY="28.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="127.0" text="Go Back">
+      <Button fx:id="goBackButton" layoutX="848.0" layoutY="28.0" mnemonicParsing="false" onAction="#back" prefHeight="42.0" prefWidth="127.0" text="Go Back">
          <font>
             <Font size="16.0" />
          </font>

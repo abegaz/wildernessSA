@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="550.0" minWidth="675.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.ReportDetailController">
+<AnchorPane minHeight="550.0" minWidth="675.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.ReportDetailController">
    <children>
       <Label fx:id="titleLabel" layoutX="274.0" layoutY="14.0" text="Report View">
          <font>
@@ -35,5 +35,6 @@
          </children>
       </Pane>
       <Button fx:id="backButton" layoutX="14.0" layoutY="19.0" mnemonicParsing="false" onAction="#backToAdmin" text="Back" visible="true" />
+      <Button fx:id="forecastBtn" layoutX="610.0" layoutY="19.0" mnemonicParsing="false" onAction="#toForecastView" text="Forcast" />
    </children>
 </AnchorPane>
