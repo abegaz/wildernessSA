@@ -33,7 +33,7 @@ public class AdminGUIController /*extends LoginController*/ {
 	private int usernameInt;
 	private int passwordInt;
 
-	LoginController loginController = new LoginController();
+	//LoginController loginController = new LoginController(); //hashPass method is static, so an object to access it is not needed
 
 	@FXML
 	public void createUser(ActionEvent event) throws Exception{
@@ -76,13 +76,13 @@ public class AdminGUIController /*extends LoginController*/ {
 					INSERT INTO users (username, `password`, privilege)
 					VALUES('user2', '1991225552', 0);
 					*/
-				String createUser = "INSERT INTO users (username,  `password`, privilege) VALUES ( '" + userNameTextField.getText() + "', '" + loginController.hashPass(passwordTextField.getText()) + "', 0)";
+				String createUser = "INSERT INTO users (username,  `password`, privilege) VALUES ( '" + userNameTextField.getText() + "', '" + LoginController.hashPass(passwordTextField.getText()) + "', 0)";
 				updateUsers = conn.prepareStatement(createUser);
 				updateUsers.execute(createUser);
 				insertStatusLabel.setText("Insertion Sucessfull");
 				insertStatusLabel.setTextFill(Color.GREEN);
 			}
-			conn.close();
+			conn.close();//probably should properly close the connection, resultSet, and statement 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

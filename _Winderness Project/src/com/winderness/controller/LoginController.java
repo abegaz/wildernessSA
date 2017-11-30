@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -39,7 +40,7 @@ public class LoginController{
     private int passwordInt;
 
     private ArrayList<User> users;
-    private Comparator<User> c;
+    private Comparator<User> c, c2;
 
     @FXML
     public void initialize() {
@@ -47,7 +48,7 @@ public class LoginController{
     	users = new ArrayList<User>();
     	try(
     			Connection conn = WilderTestDBConfig.getConnection();
-				PreparedStatement displayprofile = conn.prepareStatement("SELECT * FROM users GROUP BY username;");
+				PreparedStatement displayprofile = conn.prepareStatement("SELECT * FROM users ORDER BY username;");
 				ResultSet rs = displayprofile.executeQuery();
 		){
     		while(rs.next())
@@ -70,55 +71,81 @@ public class LoginController{
             		return u1.getUsername().compareTo(u2.getUsername());
             }
         };
+        c2 = new Comparator<User>()
+        {
+            public int compare(User u1, User u2)
+            {
+            	return u1.getUsername().compareTo(u2.getUsername());
+            }
+        };
     }
 
     public void login(ActionEvent event) throws Exception {
     	/*String*/ permission ="";
-        validatePasswordAndUsername();
+        //validatePasswordAndUsername();
 //    	checkUsersTable(); //for testing
 
-        try {
-            permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
-
-            //conn = WilderTestDBConfig.getConnection();//shouldn't need to connect to the database here
-
-        } catch (Exception e) {
-        	e.printStackTrace();
-        }
-
-    	if(checkHashPass() == true) {
-    		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-    		if(permission.equals("1"))
-            {
-            	root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
-            	scene = new Scene(root);
-            	stage.setScene(scene);
-            }
-    		else if(permission.equals("0")){
-    			root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
-                scene = new Scene(root);
-                stage.setScene(scene);
-    		}
-    		else System.out.println("login failed");
-
-        } else System.out.println("login failed");
-
-//    	String pass = String.valueOf(hashPass(passwordTextField.getText()));
-//    	int index = Collections.binarySearch(users, new User(usernameTextField.getText().toLowerCase(), pass.toLowerCase()), c);
-//		System.out.println("Found at index  " + index);
-//		if(index >=0 && index < users.size() && users.get(index).getPassword().equals(pass)){
-//			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//			if(users.get(index).getPrivilege() == 1){
-//				root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
+//        try {
+//            permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
+//
+//            //conn = WilderTestDBConfig.getConnection();//shouldn't need to connect to the database here
+//
+//        } catch (Exception e) {
+//        	e.printStackTrace();
+//        }
+//
+//    	if(checkHashPass() == true) {
+//    		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+//    		if(permission.equals("1"))
+//            {
+//            	root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
 //            	scene = new Scene(root);
 //            	stage.setScene(scene);
-//			}
-//			else if(users.get(index).getPrivilege() == 0){
-//				root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
+//            }
+//    		else if(permission.equals("0")){
+//    			root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
 //                scene = new Scene(root);
 //                stage.setScene(scene);
-//			}else System.out.println("login failed");
-//		} else System.out.println("login failed");
+//    		}
+//    		else System.out.println("login failed");
+//
+//        } else System.out.println("login failed");
+
+    	
+    	loginUsernameResultLabel.setText("");
+        loginPasswordResultLabel.setText("");
+        
+    	String pass = String.valueOf(hashPass(passwordTextField.getText()));
+    	Collections.sort(users, c);
+    	System.out.println(users);
+    	User search = new User(usernameTextField.getText().toLowerCase(), pass.toLowerCase());
+    	int index = Collections.binarySearch(users, search /*new User(usernameTextField.getText().toLowerCase(), pass.toLowerCase())*/, c);
+		System.out.println("Found at index  " + index);
+		if(index >=0 && index < users.size() && users.get(index).getPassword().equals(pass)){
+			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+			if(users.get(index).getPrivilege() == 1){
+				root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
+            	scene = new Scene(root);
+            	stage.setScene(scene);
+			}
+			else if(users.get(index).getPrivilege() == 0){
+				root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
+                scene = new Scene(root);
+                stage.setScene(scene);
+			}else System.out.println("login failed");
+		} else {
+        	Collections.sort(users, c2);
+        	int index2 = Collections.binarySearch(users, search, c2);
+        	//System.out.println("Found at index  " + index2);
+        	if(index2 <0 || index2 >= users.size()){
+	            loginUsernameResultLabel.setText("User Not Found");
+	            loginUsernameResultLabel.setTextFill(Color.RED);
+        	} else {
+        		loginPasswordResultLabel.setText("Password Incorrect");
+                loginPasswordResultLabel.setTextFill(Color.RED);
+        	}
+			System.out.println("login failed");
+		}
 
     }
 
@@ -130,6 +157,13 @@ public class LoginController{
         System.out.println("Password: " + password + ", hash: " + hash);
         return hash;
     }
+    
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Everything below here is unused (either for testing purposes or old code)
+     *
+     */
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public boolean checkHashPass(){
     	//all of this is already taken care of
@@ -223,6 +257,7 @@ GROUP BY users.userID;
        }
         //^testing^
     }
+    
     public void validatePasswordAndUsername(){
         try {
             Connection conn = WilderTestDBConfig.getConnection();
