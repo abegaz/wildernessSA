@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.winderness.model.Context;
 import com.winderness.model.Report;
 import com.winderness.model.Station;
 
@@ -51,11 +52,15 @@ public class ReportDetailController extends LoginController {
     private AnchorPane root;
     private Scene scene;
 
-    private static String permission = "";
+    //private static String permission = "";
 
+    private int privilege;
 
     @FXML
     public void initialize() {
+    	
+    	privilege = Context.getInstance().getUser().getPrivilege();
+    	
     	stationListView.setItems(getStationList());
 
 
@@ -72,14 +77,17 @@ public class ReportDetailController extends LoginController {
 
     	System.out.println("\n------------------------------------------------------------------\n");
 
-    	testDB();
+    	//testDB();
     }
     public void backToAdmin(ActionEvent event) throws Exception {
-    			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            	root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
-            	scene = new Scene(root);
-            	stage.setScene(scene);
-           }
+		stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+		if(privilege == 1)
+			root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
+		else
+			root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+    	scene = new Scene(root);
+    	stage.setScene(scene);
+   }
         /*if(permission.equals("1"))
         {
         	backButton.setVisible(true);
@@ -89,32 +97,30 @@ public class ReportDetailController extends LoginController {
         	stage.setScene(scene);
         }*/
 
-    public boolean visibleButton()
-    {
-    	permission ="";
-    	boolean visible = false;
-
-        try {
-             permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
-
-        } catch (Exception e) {
-         	System.out.println("back button not working");
-         	e.printStackTrace();
-         }
-        if(permission.equals("1"))
-        {
-        	visible = true;
-        	backButton.setVisible(visible);
-        }
-        else
-        {
-        	backButton.setVisible(visible);
-        	backButton.setDisable(visible);
-        }
-		return visible;
-
-
-    }
+//    public boolean visibleButton()
+//    {
+//    	permission ="";
+//    	boolean visible = false;
+//
+//        try {
+//             permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
+//
+//        } catch (Exception e) {
+//         	System.out.println("back button not working");
+//         	e.printStackTrace();
+//         }
+//        if(permission.equals("1"))
+//        {
+//        	visible = true;
+//        	backButton.setVisible(visible);
+//        }
+//        else
+//        {
+//        	backButton.setVisible(visible);
+//        	backButton.setDisable(visible);
+//        }
+//		return visible;
+//    }
 
     public ObservableList<Station>/*<String>*/  getStationList()
     {
