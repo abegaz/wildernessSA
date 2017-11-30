@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+//import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.sql.Connection;
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.winderness.model.Context;
 import com.winderness.model.User;
 
 public class LoginController{
@@ -122,6 +123,10 @@ public class LoginController{
     	int index = Collections.binarySearch(users, search /*new User(usernameTextField.getText().toLowerCase(), pass.toLowerCase())*/, c);
 		System.out.println("Found at index  " + index);
 		if(index >=0 && index < users.size() && users.get(index).getPassword().equals(pass)){
+			
+			//set currently logged in user
+			Context.getInstance().setUser(users.get(index));
+			
 			stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
 			if(users.get(index).getPrivilege() == 1){
 				root = FXMLLoader.load(getClass().getResource("../view/AdminGUI.fxml"));
@@ -129,7 +134,7 @@ public class LoginController{
             	stage.setScene(scene);
 			}
 			else if(users.get(index).getPrivilege() == 0){
-				root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView3.fxml"));//now goes to new one
+				root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView.fxml"));//don't need new one anymore
                 scene = new Scene(root);
                 stage.setScene(scene);
 			}else System.out.println("login failed");
