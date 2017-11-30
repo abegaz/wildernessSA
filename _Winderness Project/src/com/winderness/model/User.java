@@ -29,6 +29,12 @@ public class User {
 		this.password = "";
 	}
 
+	@Override
+	public String toString() {
+		return "User [userID=" + userID + ", privilege=" + privilege + ", username=" + username + ", password="
+				+ password + "]";
+	}
+
 	public int getUserID() {
 		return userID;
 	}

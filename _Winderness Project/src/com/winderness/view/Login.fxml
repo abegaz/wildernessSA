@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.LoginController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.LoginController">
     <children>
         <ImageView fitHeight="811.0" fitWidth="1000.0" layoutY="-7.0" opacity="0.74" pickOnBounds="true">
             <image>
@@ -40,14 +40,14 @@
          <children>
               <TextField fx:id="usernameTextField" promptText="Enter Username..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
               <PasswordField fx:id="passwordTextField" promptText="Enter Password..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
-              <Label fx:id="loginUsernameResultLabel" prefHeight="59.0" prefWidth="247.0" textFill="#f50505" GridPane.columnIndex="2" GridPane.rowIndex="1">
+              <Label fx:id="loginUsernameResultLabel" textFill="#f50505" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="40.0" />
                </font>
             </Label>
               <Label fx:id="loginPasswordResultLabel" textFill="#fc0202" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
-                  <Font name="System Bold" size="41.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
               <Label prefHeight="87.0" prefWidth="162.0" text="Username" GridPane.rowIndex="1">
