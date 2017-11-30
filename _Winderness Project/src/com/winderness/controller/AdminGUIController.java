@@ -11,17 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class AdminGUIController /*extends LoginController*/ {
 
-	@FXML private Button createUserButton, userView;
-	@FXML private TextField userNameTextField, passwordTextField;
+	@FXML private Button createUserButton, userView, newPasswordButton, logoutButton;;
+	@FXML private TextField userNameTextField, passwordTextField, currUserTextField, currPasswordTextField, newPasswordTextField;
 	@FXML private Label usernameLabel, passwordLabel, insertStatusLabel;
 
 
@@ -94,6 +96,32 @@ public class AdminGUIController /*extends LoginController*/ {
          root = FXMLLoader.load(getClass().getResource("../view/ReportDetailView.fxml"));
          scene = new Scene(root);
          stage.setScene(scene);
+	}
+	@FXML
+	public void logout(ActionEvent event) throws Exception{
+		 stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+         root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+         scene = new Scene(root);
+         stage.setScene(scene);
+		
+	}
+	public void newPassword(ActionEvent event) throws Exception{
+		try {
+		conn = WilderTestDBConfig.getConnection();
+		PreparedStatement updateUser = conn.prepareStatement ("UPDATE users SET password = '"+ LoginController.hashPass(newPasswordTextField.getText()) + "' WHERE users.username like '" + currUserTextField.getText() + "' AND users.password like '" +String.valueOf(LoginController.hashPass(currPasswordTextField.getText()))+"';");
+		updateUser.execute();
+		conn.close();
+		System.out.println("new password created");
+		Alert alert = new Alert(AlertType.INFORMATION, "Password updated.");
+		alert.showAndWait();
+
+	}
+		catch (Exception e) {
+			System.out.println("password not created");
+			Alert alert = new Alert(AlertType.ERROR, "Password not updated.\n" + e.getMessage());
+			alert.showAndWait();
+			e.printStackTrace();
+		}
 	}
 
 }
