@@ -45,7 +45,7 @@ public class ReportDetailController extends LoginController {
     @FXML private TableColumn<Report, Double> windSpeedColumn;
     @FXML private TableColumn<Report, String> windDirectionColumn;
     @FXML private TableColumn<Report, String> conditionsColumn;
-    @FXML private Button backButton;
+    @FXML private Button backButton, forecastBtn;
 
     private Stage stage;
     private AnchorPane root;
@@ -233,5 +233,11 @@ public class ReportDetailController extends LoginController {
             try { stmt.close(); } catch (Exception e) { /* ignored */ }
             try { conn.close(); } catch (Exception e) { /* ignored */ }
        }
+    }
+    public void toForecastView(ActionEvent event) throws Exception {
+        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("../view/ForecastGUI.fxml"));
+        scene = new Scene(root);
+        stage.setScene(scene);
     }
 }

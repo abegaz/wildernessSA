@@ -22,6 +22,13 @@ public class User {
 		this.password = password;
 	}
 
+	public User() {
+		this.userID = 0;
+		this.privilege = 0;
+		this.username = "";
+		this.password = "";
+	}
+
 	public int getUserID() {
 		return userID;
 	}

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="622.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.AdminGUIController">
+<AnchorPane prefHeight="622.0" prefWidth="774.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.winderness.controller.AdminGUIController">
    <children>
       <ImageView fitHeight="622.0" fitWidth="774.0" layoutX="4.0" layoutY="1.0" onMouseClicked="#createUser" opacity="0.46" pickOnBounds="true">
          <image>
@@ -23,14 +23,23 @@
       </Label>
       <HBox alignment="CENTER" layoutX="73.0" layoutY="529.0" prefHeight="78.0" prefWidth="665.0">
          <children>
-            <Label fx:id="usernameLabel" textFill="RED" />
+            <Label fx:id="usernameLabel" prefHeight="36.0" prefWidth="123.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font></Label>
             <TextField fx:id="userNameTextField" text="User Name" />
-            <Label fx:id="passwordLabel" textFill="RED" />
+            <Label fx:id="passwordLabel" prefHeight="28.0" prefWidth="122.0" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font></Label>
             <TextField fx:id="passwordTextField" text="Password" />
             <Button fx:id="createUserButton" mnemonicParsing="false" onAction="#createUser" prefHeight="41.0" prefWidth="95.0" text="Create User" />
          </children>
       </HBox>
       <Button fx:id="userView" layoutX="99.0" layoutY="460.0" mnemonicParsing="false" onAction="#userView" prefHeight="47.0" prefWidth="83.0" text="User View" />
-      <Label fx:id="insertStatusLabel" layoutX="353.0" layoutY="475.0" />
+      <Label fx:id="insertStatusLabel" layoutX="223.0" layoutY="406.0" prefHeight="109.0" prefWidth="366.0" textFill="RED">
+         <font>
+            <Font size="53.0" />
+         </font></Label>
    </children>
 </AnchorPane>

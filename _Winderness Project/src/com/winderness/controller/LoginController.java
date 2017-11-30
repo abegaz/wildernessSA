@@ -75,7 +75,7 @@ public class LoginController{
     public void login(ActionEvent event) throws Exception {
     	/*String*/ permission ="";
         validatePasswordAndUsername();
-    	checkUsersTable(); //for testing
+//    	checkUsersTable(); //for testing
 
         try {
             permission = getPermission(usernameTextField.getText(), String.valueOf(hashPass(passwordTextField.getText())));
