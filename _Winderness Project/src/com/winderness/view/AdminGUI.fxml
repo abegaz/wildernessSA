@@ -40,6 +40,15 @@
       <Label fx:id="insertStatusLabel" layoutX="223.0" layoutY="406.0" prefHeight="109.0" prefWidth="366.0" textFill="RED">
          <font>
             <Font size="53.0" />
-         </font></Label>
+         </font></Label> 
+   <HBox alignment="CENTER" layoutX="190.0" layoutY="432.0" prefHeight="120.0" prefWidth="435.0">
+    <children>
+   			<TextField fx:id="currUserTextField" prefHeight="27.0" prefWidth="155.0" text="User Name" />
+            <TextField fx:id="currPasswordTextField" text="Current Password" />
+            <TextField fx:id="newPasswordTextField" onAction="#newPassword" text="New Password" />
+            <Button fx:id="newPasswordButton" alignment="CENTER" mnemonicParsing="false" onAction="#newPassword" prefHeight="38.0" prefWidth="146.0" text="New Password" />
    </children>
+   </HBox>
+   <Button fx:id="logoutButton" layoutX="573.0" layoutY="54.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+</children>
 </AnchorPane>
